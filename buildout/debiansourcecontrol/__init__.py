@@ -119,5 +119,9 @@ def finish(buildout):
     """
     This do the job to create the structure
     """
+    do = buildout['buildout'].get('debian-source-control', False)
+    if not do:
+        LOG.info('debian-source-control=False')
+        return
     dsc = DebianSourceControl(buildout)
     dsc.init_structure()
